@@ -1,5 +1,7 @@
+import Map from "./components/Map";
+
 const App = () => {
-  return <div>Parkingi w Łodzi</div>;
+  return <div><Map></Map></div>;
 };
 
 export default App;
