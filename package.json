@@ -1,5 +1,5 @@
 {
-  "name": "parkingiwlodzi",
+  "name": "napijsiewlodzi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,10 @@
     "format": "prettier . --write"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.0.0",
+    "@fortawesome/free-regular-svg-icons": "^7.0.0",
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.3",
     "@tailwindcss/vite": "^4.1.11",
     "leaflet": "^1.9.4",
     "react": "^19.1.1",
