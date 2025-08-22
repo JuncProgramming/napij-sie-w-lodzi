@@ -1,28 +1,15 @@
 import ThemeSwitch from './ThemeSwitch';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import { useSidebar } from '../contexts/SidebarContext';
+import Logo from './Logo';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Header = () => {
-  const { toggleSidebar } = useSidebar();
-
   return (
-    <header className="text flex h-16 w-screen items-center justify-between bg-blue-500 px-4 text-center text-white dark:bg-blue-950">
-      <button onClick={toggleSidebar}>
-        <FontAwesomeIcon
-          icon={faBars}
-          className="cursor-pointer text-xl text-white"
-        />
-      </button>
-      <img
-        src="/logo.svg"
-        alt="Logo"
-        className="h-12 w-auto"
-        style={{
-          filter: 'brightness(0) saturate(100%) invert(100%)'
-        }}
-      />
-      <ThemeSwitch></ThemeSwitch>
+    <header className="z-10 flex h-16 w-full flex-shrink-0 items-center justify-between border-blue-100 bg-blue-50 px-4 shadow-md transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:border-gray-700 dark:bg-gray-800">
+      <div className="w-12"></div>
+      <Logo className="h-12 w-auto" />
+      <div className="flex w-12 justify-end">
+        <ThemeSwitch />
+      </div>
     </header>
   );
 };
