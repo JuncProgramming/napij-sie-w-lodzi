@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../contexts/FavoritesContext';
+import { useFavorites } from '../hooks/useFavorites';
 import 'leaflet/dist/leaflet.css';
 import drinkingWaterPoints from '../data/drinkingWaterPoints';
 import PopUp from './PopUp';
@@ -43,11 +43,31 @@ const Map = () => {
       );
     }
 
-    if (!filters.showWorking || !filters.showNotWorking) {
+    if (
+      !filters.showWorking ||
+      !filters.showNotWorking ||
+      !filters.showUnknownWorking
+    ) {
       filtered = filtered.filter(waterPoint => {
         const status = waterPoint.properties.isWorking;
-        if (!filters.showWorking && status) return false;
-        if (!filters.showNotWorking && !status) return false;
+        if (!filters.showWorking && status === 'yes') return false;
+        if (!filters.showNotWorking && status === 'no') return false;
+        if (!filters.showUnknownWorking && status === 'unknown') return false;
+        return true;
+      });
+    }
+
+    if (
+      !filters.showAccessible ||
+      !filters.showNotAccessible ||
+      !filters.showUnknownAccessible
+    ) {
+      filtered = filtered.filter(waterPoint => {
+        const accessibility = waterPoint.properties.isAccessible;
+        if (!filters.showAccessible && accessibility === 'yes') return false;
+        if (!filters.showNotAccessible && accessibility === 'no') return false;
+        if (!filters.showUnknownAccessible && accessibility === 'unknown')
+          return false;
         return true;
       });
     }
@@ -87,13 +107,14 @@ const Map = () => {
               coordinates={waterPoint.geometry.coordinates}
               placeId={waterPoint.geometry.placeId}
               isWorking={waterPoint.properties.isWorking}
+              isAccessible={waterPoint.properties.isAccessible}
             />
           </Marker>
         ))}
       </MapContainer>
       <button
         onClick={toggleFilter}
-        className="absolute top-4 right-4 z-[1001] flex size-11 items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+        className="absolute top-4 right-4 z-[1001] flex size-11 cursor-pointer items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
         <FontAwesomeIcon
           icon={isFilterOpen ? faTimes : faSliders}
           className="text-sm transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
