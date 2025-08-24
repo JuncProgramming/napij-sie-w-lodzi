@@ -3,9 +3,9 @@ import Header from './components/Header';
 
 const App = () => {
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden">
+    <div className="flex h-screen w-screen flex-col overflow-hidden">
       <Header />
-      <div className="flex-1 relative">
+      <div className="relative flex-1">
         <Map />
       </div>
     </div>
