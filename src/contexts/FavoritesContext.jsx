@@ -1,11 +1,21 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
-const FavoritesContext = createContext();
+// eslint-disable-next-line react-refresh/only-export-components
+export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState(() => {
     const stored = localStorage.getItem('favorites');
-    return stored ? JSON.parse(stored) : [];
+    const parsed = stored ? JSON.parse(stored) : [];
+    const cleaned = [...new Set(parsed)].filter(
+      item => item !== null && item !== undefined
+    );
+
+    if (cleaned.length !== parsed.length) {
+      localStorage.setItem('favorites', JSON.stringify(cleaned));
+    }
+
+    return cleaned;
   });
 
   useEffect(() => {
@@ -13,9 +23,16 @@ export const FavoritesProvider = ({ children }) => {
   }, [favorites]);
 
   const toggleFavorite = item => {
-    setFavorites(prev =>
-      prev.includes(item) ? prev.filter(fav => fav !== item) : [...prev, item]
-    );
+    setFavorites(prev => {
+      const filtered = prev.filter(fav => fav !== item);
+      const isCurrentlyFavorite = filtered.length < prev.length;
+
+      if (isCurrentlyFavorite) {
+        return filtered;
+      } else {
+        return [...filtered, item];
+      }
+    });
   };
 
   const clearFavorites = () => {
@@ -30,4 +47,4 @@ export const FavoritesProvider = ({ children }) => {
   );
 };
 
-export const useFavorites = () => useContext(FavoritesContext);
+export default FavoritesProvider;

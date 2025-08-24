@@ -1,6 +1,5 @@
 import ThemeSwitch from './ThemeSwitch';
 import Logo from './Logo';
-import { useTheme } from '../contexts/ThemeContext';
 
 const Header = () => {
   return (
