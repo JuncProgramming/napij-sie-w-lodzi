@@ -3,7 +3,8 @@ const drinkingWaterPoints = [
     id: 'dw-1',
     properties: {
       name: 'Zdrój wody pitnej ZWiK Łódź "Przyklasztorze"',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -18,7 +19,8 @@ const drinkingWaterPoints = [
     id: 'dw-2',
     properties: {
       name: 'Zdrój wody pitnej ZWiK Łódź "Wycieczkowa"',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -33,7 +35,8 @@ const drinkingWaterPoints = [
     id: 'dw-3',
     properties: {
       name: 'Zdrój wody pitnej ZWiK Łódź "Zbocze"',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -48,7 +51,8 @@ const drinkingWaterPoints = [
     id: 'dw-4',
     properties: {
       name: 'Zdrój wody pitnej przed siedzibą ZWiK Łódź przy ul. Wierzbowej 52',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -62,7 +66,8 @@ const drinkingWaterPoints = [
     id: 'dw-5',
     properties: {
       name: 'Zdrój wody pitnej w siedzibie ZWiK Łódź przy ul. Wierzbowej 52',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -77,7 +82,8 @@ const drinkingWaterPoints = [
     id: 'dw-6',
     properties: {
       name: 'Zdrój wody pitnej przy skrzyżowaniu ul. Konstantynowskiej i ul. Unii Lubelskiej w Parku na Zdrowiu',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -91,7 +97,8 @@ const drinkingWaterPoints = [
     id: 'dw-7',
     properties: {
       name: 'Zdrój wody pitnej na placu Wolności',
-      isWorking: true
+      isWorking: 'yes',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -104,7 +111,8 @@ const drinkingWaterPoints = [
     id: 'dw-8',
     properties: {
       name: 'Zdrój wody pitnej w Łódzkiej Informacji Turystycznej przy ul. Piotrkowskiej',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -119,7 +127,8 @@ const drinkingWaterPoints = [
     id: 'dw-9',
     properties: {
       name: 'Zdrój wody pitnej przy skrzyżowaniu ul. Piotrkowskiej i ul. Stefana Jaracza',
-      isWorking: false
+      isWorking: 'no',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -134,7 +143,8 @@ const drinkingWaterPoints = [
     id: 'dw-10',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Piotrkowskiej (aleja Artura Rubinsteina)',
-      isWorking: true
+      isWorking: 'yes',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -148,7 +158,8 @@ const drinkingWaterPoints = [
     id: 'dw-11',
     properties: {
       name: 'Zdrój wody pitnej w Urzędzie Miasta Łodzi przy ul. Piotrkowskiej',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -163,7 +174,8 @@ const drinkingWaterPoints = [
     id: 'dw-12',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Piotrkowskiej (aleja Leona Schillera)',
-      isWorking: true
+      isWorking: 'yes',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -178,7 +190,8 @@ const drinkingWaterPoints = [
     id: 'dw-13',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Piotrkowskiej',
-      isWorking: true
+      isWorking: 'yes',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -193,7 +206,8 @@ const drinkingWaterPoints = [
     id: 'dw-14',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Ogrodowej (zachód)',
-      isWorking: false
+      isWorking: 'no',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -208,7 +222,8 @@ const drinkingWaterPoints = [
     id: 'dw-15',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Ogrodowej (wschód)',
-      isWorking: true
+      isWorking: 'yes',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -222,7 +237,8 @@ const drinkingWaterPoints = [
     id: 'dw-16',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Legionów w pasażu Barbary Połomskiej',
-      isWorking: false
+      isWorking: 'no',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -238,7 +254,8 @@ const drinkingWaterPoints = [
     id: 'dw-17',
     properties: {
       name: 'Zdrój wody pitnej na placu Henryka Dąbrowskiego',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -252,7 +269,8 @@ const drinkingWaterPoints = [
     id: 'dw-18',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Składowej (Nowa Fabryczna)',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -267,7 +285,8 @@ const drinkingWaterPoints = [
     id: 'dw-19',
     properties: {
       name: 'Zdrój wody pitnej przy ul. płk. Jana Kilińskiego (Brama Miasta)',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -281,7 +300,8 @@ const drinkingWaterPoints = [
     id: 'dw-20',
     properties: {
       name: 'Zdrój wody pitnej w Zieleńcu przy ul. Junackiej',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -296,7 +316,8 @@ const drinkingWaterPoints = [
     id: 'dw-21',
     properties: {
       name: 'Zdrój wody pitnej przy ul. 28 Pułku Strzelców Kaniowskich',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
@@ -310,7 +331,8 @@ const drinkingWaterPoints = [
     id: 'dw-22',
     properties: {
       name: 'Zdrój wody pitnej w parku Podolskim',
-      isWorking: true
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
     },
     geometry: {
       type: 'Point',
