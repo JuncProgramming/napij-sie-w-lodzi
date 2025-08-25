@@ -102,9 +102,10 @@ const drinkingWaterPoints = [
     },
     geometry: {
       type: 'Point',
-      coordinates: [19.45528, 51.776512]
-    },
-    /* Zdrój wody pitnej na placu Wolności */ region: 'Śródmieście'
+      coordinates: [19.45528, 51.776512],
+      region: 'Śródmieście'
+    }
+    /* Zdrój wody pitnej na placu Wolności */
   },
 
   {
@@ -117,10 +118,10 @@ const drinkingWaterPoints = [
     geometry: {
       type: 'Point',
       coordinates: [19.4556841, 51.7731619],
-      placeId: 'ChIJhQNZb9XKG0cR_1eIkFIfY4s'
-    },
-    /* Zdrój wody pitnej w Łódzkiej Informacji Turystycznej przy ul. Piotrkowskiej */ region:
-      'Śródmieście'
+      placeId: 'ChIJhQNZb9XKG0cR_1eIkFIfY4s',
+      region: 'Śródmieście'
+    }
+    /* Zdrój wody pitnej w Łódzkiej Informacji Turystycznej przy ul. Piotrkowskiej */
   },
 
   {
