@@ -5,9 +5,14 @@ const App = () => {
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden">
       <Header />
-      <div className="relative flex-1">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="relative flex-1"
+        role="main"
+        aria-label="Główna zawartość aplikacji - mapa punktów z wodą pitną">
         <Map />
-      </div>
+      </main>
     </div>
   );
 };
