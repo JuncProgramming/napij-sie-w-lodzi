@@ -8,7 +8,7 @@ const Header = () => {
       role="banner">
       <div className="w-12" aria-hidden="true"></div>
       <div className="flex items-center">
-        <Logo/>
+        <Logo />
       </div>
       <div className="flex w-12 justify-end">
         <ThemeSwitch />

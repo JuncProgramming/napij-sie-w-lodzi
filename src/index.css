@@ -2,21 +2,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --marker-primary: #1e40af; /* blue-800 */
-  --marker-secondary: #eff6ff; /* blue-50 */
   --cluster-bg: #1e40af; /* blue-800 */
   --cluster-text: #eff6ff; /* blue-50 */
-  --marker-shadow: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))
-    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
 }
 
 .dark {
-  --marker-primary: #1e293b; /* gray-800 */
-  --marker-secondary: #eff6ff; /* blue-50 */
   --cluster-bg: #1e293b; /* gray-800 */
   --cluster-text: #eff6ff; /* blue-50 */
-  --marker-shadow: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))
-    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
 }
 
 /* Popup styling */
