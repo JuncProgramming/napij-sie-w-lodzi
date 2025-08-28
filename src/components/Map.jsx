@@ -1,12 +1,61 @@
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../hooks/useFavorites';
+import L from 'leaflet';
+import { renderToStaticMarkup } from 'react-dom/server';
 import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-markercluster/styles';
 import drinkingWaterPoints from '../data/drinkingWaterPoints';
-import PopUp from './PopUp';
 import FilterPanel from './FilterPanel';
+import WaterPointIcon from './WaterPointIcon';
+import WaterPointMarker from './WaterPointMarker';
+
+const customWaterPointIcon = (() => {
+  return L.divIcon({
+    html: `<div 
+      class="custom-marker-focus transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105" 
+      style="filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06)))"
+      role="button"
+      aria-label="Punkt z wodą pitną"
+    >${renderToStaticMarkup(<WaterPointIcon />)}</div>`,
+    className: '',
+    iconSize: [48, 48],
+    iconAnchor: [24, 48],
+    popupAnchor: [0, -48]
+  });
+})();
+
+const createClusterIcon = cluster => {
+  const waterPointsCount = cluster.getChildCount();
+
+  let sizeClass = 'w-10 h-10 text-xs';
+  let clusterSizeClass = 'cluster-small';
+  let iconSize = 40;
+
+  if (waterPointsCount >= 10) {
+    sizeClass = 'w-12 h-12 text-sm';
+    clusterSizeClass = 'cluster-medium';
+    iconSize = 48;
+  }
+
+  return L.divIcon({
+    html: `
+      <div 
+        class="custom-marker-focus ${clusterSizeClass} flex items-center justify-center ${sizeClass} rounded-full font-bold shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-110" 
+        style="background-color: var(--cluster-bg); color: var(--cluster-text);"
+        role="button"
+        aria-label="Grupa ${waterPointsCount} punktów z wodą pitną"
+      >
+        ${waterPointsCount}
+      </div>`,
+    className: '',
+    iconSize: L.point(iconSize, iconSize),
+    iconAnchor: [iconSize / 2, iconSize / 2]
+  });
+};
 
 const Map = () => {
   const { favorites } = useFavorites();
@@ -16,6 +65,33 @@ const Map = () => {
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === 'f' || event.key === 'F') {
+      event.preventDefault();
+      if (!isFilterOpen) {
+        setIsFilterOpen(true);
+      }
+      const filterButton = document.querySelector(
+        '[aria-controls="filter-panel"]'
+      );
+      if (filterButton) {
+        filterButton.focus();
+      }
+    }
+
+    if (event.key === 'Escape' && isFilterOpen) {
+      event.preventDefault();
+      setIsFilterOpen(false);
+
+      const filterButton = document.querySelector(
+        '[aria-controls="filter-panel"]'
+      );
+      if (filterButton) {
+        filterButton.focus();
+      }
+    }
   };
 
   const handleFilterChange = filters => {
@@ -83,41 +159,56 @@ const Map = () => {
   };
 
   return (
-    <div className="absolute inset-0 h-full w-full">
+    <div className="absolute inset-0 h-full w-full" onKeyDown={handleKeyDown}>
       <MapContainer
         center={[51.768432, 19.457468]}
         zoom={12}
-        className="z-0 h-full w-full"
-        style={{ height: '100%', width: '100%' }}>
+        minZoom={7}
+        maxZoom={18}
+        maxBounds={[
+          [49.002, 14.123],
+          [54.839, 24.15]
+        ]}
+        maxBoundsViscosity={1.0}
+        style={{ height: '100%', width: '100%' }}
+        role="application"
+        aria-label="Mapa punktów z wodą pitną w Łodzi. Użyj przycisków Tab i Enter do nawigacji."
+        tabIndex={0}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+          maxZoom={18}
+          tileSize={256}
+          zoomOffset={0}
+          detectRetina={true}
         />
-
-        {filteredWaterPoints.map(waterPoint => (
-          <Marker
-            key={waterPoint.id}
-            position={[
-              waterPoint.geometry.coordinates[1],
-              waterPoint.geometry.coordinates[0]
-            ]}>
-            <PopUp
-              id={waterPoint.id}
-              name={waterPoint.properties.name}
-              coordinates={waterPoint.geometry.coordinates}
-              placeId={waterPoint.geometry.placeId}
-              isWorking={waterPoint.properties.isWorking}
-              isAccessible={waterPoint.properties.isAccessible}
+        <MarkerClusterGroup
+          disableClusteringAtZoom={12}
+          showCoverageOnHover={false}
+          zoomToBoundsOnClick={true}
+          animateAddingMarkers={true}
+          iconCreateFunction={cluster => createClusterIcon(cluster)}>
+          {filteredWaterPoints.map(waterPoint => (
+            <WaterPointMarker
+              key={waterPoint.id}
+              waterPoint={waterPoint}
+              icon={customWaterPointIcon}
             />
-          </Marker>
-        ))}
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
       <button
         onClick={toggleFilter}
-        className="absolute top-4 right-4 z-[1001] flex size-11 cursor-pointer items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+        className="absolute top-4 right-4 z-[1001] flex size-11 cursor-pointer items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:outline-none dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-blue-50"
+        aria-label={
+          isFilterOpen ? 'Zamknij panel filtrów' : 'Otwórz panel filtrów'
+        }
+        aria-expanded={isFilterOpen}
+        aria-controls="filter-panel">
         <FontAwesomeIcon
           icon={isFilterOpen ? faTimes : faSliders}
           className="text-sm transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+          aria-hidden="true"
         />
       </button>
       {isFilterOpen && (
