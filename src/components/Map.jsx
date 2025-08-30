@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../hooks/useFavorites';
@@ -9,7 +9,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/styles';
 import drinkingWaterPoints from '../data/drinkingWaterPoints';
-import FilterPanel from './FilterPanel';
+import FilterPanel from './filters/FilterPanel';
 import WaterPointIcon from './WaterPointIcon';
 import WaterPointMarker from './WaterPointMarker';
 
@@ -44,8 +44,7 @@ const createClusterIcon = cluster => {
   return L.divIcon({
     html: `
       <div 
-        class="custom-marker-focus ${clusterSizeClass} flex items-center justify-center ${sizeClass} rounded-full font-bold shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-110" 
-        style="background-color: var(--cluster-bg); color: var(--cluster-text);"
+        class="custom-marker-focus ${clusterSizeClass} flex items-center bg-blue-800 text-blue-50 dark:bg-gray-800 justify-center ${sizeClass} rounded-full font-bold shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-110" 
         role="button"
         aria-label="Grupa ${waterPointsCount} punktów z wodą pitną"
       >
@@ -62,6 +61,26 @@ const Map = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filteredWaterPoints, setFilteredWaterPoints] =
     useState(drinkingWaterPoints);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Remove focus from attribution links
+      const attributionLinks = document.querySelectorAll(
+        '.leaflet-control-attribution a'
+      );
+      attributionLinks.forEach(link => {
+        link.setAttribute('tabindex', '-1');
+      });
+
+      // Remove focus from map container
+      const mapContainer = document.querySelector('.leaflet-container');
+      if (mapContainer) {
+        mapContainer.setAttribute('tabindex', '-1');
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -172,8 +191,7 @@ const Map = () => {
         maxBoundsViscosity={1.0}
         style={{ height: '100%', width: '100%' }}
         role="application"
-        aria-label="Mapa punktów z wodą pitną w Łodzi. Użyj przycisków Tab i Enter do nawigacji."
-        tabIndex={0}>
+        aria-label="Mapa punktów z wodą pitną w Łodzi. Użyj przycisków Tab i Enter do nawigacji.">
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -199,7 +217,8 @@ const Map = () => {
       </MapContainer>
       <button
         onClick={toggleFilter}
-        className="absolute top-4 right-4 z-[1001] flex size-11 cursor-pointer items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:outline-none dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-blue-50"
+        tabIndex={2}
+        className="absolute top-4 right-4 z-[1001] flex size-11 cursor-pointer items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:outline-none dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400"
         aria-label={
           isFilterOpen ? 'Zamknij panel filtrów' : 'Otwórz panel filtrów'
         }
