@@ -15,7 +15,8 @@ const ThemeSwitch = () => {
     <button
       onClick={toggleTheme}
       onKeyDown={handleKeyDown}
-      className={`relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-blue-50 ${
+      tabIndex={1}
+      className={`relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:ring-offset-3 focus-visible:outline-none dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400 dark:focus-visible:ring-offset-gray-800 ${
         isDark ? 'bg-slate-600' : 'bg-blue-200'
       }`}
       role="switch"

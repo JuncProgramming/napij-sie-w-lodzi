@@ -11,7 +11,8 @@ const drinkingWaterPoints = [
       coordinates: [19.470812130414583, 51.846288271311394],
       placeId: 'ChIJ74r5SIzLG0cR5GEK7MGMQ0g',
       region: 'Bałuty'
-    }
+    },
+    tags: ['przyklasztorze', 'zwik', 'bałuty', 'baluty', 'klasztor', 'ulica']
     /* Zdrój wody pitnej ZWiK Łódź "Przyklasztorze" */
   },
 
@@ -27,7 +28,8 @@ const drinkingWaterPoints = [
       coordinates: [19.4878302, 51.822545],
       placeId: 'ChIJqQNBUOLLG0cRv0utmHRJy2c',
       region: 'Bałuty'
-    }
+    },
+    tags: ['wycieczkowa', 'zwik', 'bałuty', 'baluty', 'wycieczka', 'ulica']
     /* Zdrój wody pitnej ZWiK Łódź "Wycieczkowa" */
   },
 
@@ -43,7 +45,8 @@ const drinkingWaterPoints = [
       coordinates: [19.5279717, 51.7783866],
       placeId: 'ChIJ9eFxAyfLG0cRwv_YEsbHkko',
       region: 'Widzew'
-    }
+    },
+    tags: ['zbocze', 'zwik', 'łódź', 'widzew']
     /* Zdrój wody pitnej ZWiK Łódź "Zbocze" */
   },
 
@@ -58,7 +61,8 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.479591, 51.769394],
       region: 'Śródmieście'
-    }
+    },
+    tags: ['wierzbowa', 'zwik', 'łódź', 'śródmieście', 'siedziba', 'przed']
     /* Zdrój wody pitnej przed siedzibą ZWiK Łódź przy ul. Wierzbowej 52 */
   },
 
@@ -74,7 +78,8 @@ const drinkingWaterPoints = [
       coordinates: [19.480922, 51.769518],
       placeId: 'ChIJRWscUjDLG0cRGJHvhgyKHL0',
       region: 'Śródmieście'
-    }
+    },
+    tags: ['wierzbowa', 'zwik', 'łódź', 'śródmieście', 'siedziba', 'w']
     /* Zdrój wody pitnej w siedzibie ZWiK Łódź przy ul. Wierzbowej 52 */
   },
 
@@ -89,7 +94,16 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.420932, 51.7667319],
       region: 'Polesie'
-    }
+    },
+    tags: [
+      'konstantynowska',
+      'unii lubelskiej',
+      'park na zdrowiu',
+      'park',
+      'skrzyżowanie',
+      'polesie',
+      'zdrowie'
+    ]
     /* Zdrój wody pitnej przy skrzyżowaniu ul. Konstantynowskiej i ul. Unii Lubelskiej w Parku na Zdrowiu */
   },
 
@@ -104,7 +118,8 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.45528, 51.776512],
       region: 'Śródmieście'
-    }
+    },
+    tags: ['plac wolności', 'wolność', 'śródmieście', 'plac']
     /* Zdrój wody pitnej na placu Wolności */
   },
 
@@ -120,7 +135,15 @@ const drinkingWaterPoints = [
       coordinates: [19.4556841, 51.7731619],
       placeId: 'ChIJhQNZb9XKG0cR_1eIkFIfY4s',
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'piotrkowska',
+      'piotrkow',
+      'informacja turystyczna',
+      'turystyczna',
+      'śródmieście',
+      'lit'
+    ]
     /* Zdrój wody pitnej w Łódzkiej Informacji Turystycznej przy ul. Piotrkowskiej */
   },
 
@@ -136,7 +159,16 @@ const drinkingWaterPoints = [
       coordinates: [19.4557277, 51.7727836],
       placeId: 'ChIJ31P5H93LG0cRk1OlSdm5AFg',
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'piotrkowska',
+      'piotrkow',
+      'jaracza',
+      'jaracz',
+      'stefan jaracz',
+      'skrzyżowanie',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej przy skrzyżowaniu ul. Piotrkowskiej i ul. Stefana Jaracza */
   },
 
@@ -151,7 +183,16 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.4564365, 51.7675838],
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'piotrkowska',
+      'piotrkow',
+      'rubinstein',
+      'rubinsteina',
+      'artur rubinstein',
+      'aleja',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej przy ul. Piotrkowskiej (aleja Artura Rubinsteina) */
   },
 
@@ -167,7 +208,16 @@ const drinkingWaterPoints = [
       coordinates: [19.4576145, 51.764594],
       placeId: 'ChIJY0E1N9Q0GkcRZIhC4V2nMlU',
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'piotrkowska',
+      'piotrkow',
+      'urząd miasta',
+      'urząd',
+      'miasto',
+      'uml',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej w Urzędzie Miasta Łodzi przy ul. Piotrkowskiej */
   },
 
@@ -183,7 +233,16 @@ const drinkingWaterPoints = [
       coordinates: [19.45786999, 51.7636942],
       placeId: 'ChIJPcN5Ohs1GkcR-f8thdY_KQo',
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'piotrkowska',
+      'piotrkow',
+      'schiller',
+      'schillera',
+      'leon schiller',
+      'aleja',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej przy ul. Piotrkowskiej (aleja Leona Schillera) */
   },
 
@@ -199,7 +258,8 @@ const drinkingWaterPoints = [
       coordinates: [19.458131, 51.760966],
       placeId: 'ChIJJwvSfos1GkcRH02YdYJrlxI',
       region: 'Śródmieście'
-    }
+    },
+    tags: ['piotrkowska', 'piotrkow', 'śródmieście']
     /* Zdrój wody pitnej przy ul. Piotrkowskiej */
   },
 
@@ -215,7 +275,8 @@ const drinkingWaterPoints = [
       coordinates: [19.4491024, 51.7783386],
       placeId: 'ChIJ21dUmI7LG0cRhuSOyiBAhKY',
       region: 'Śródmieście'
-    }
+    },
+    tags: ['ogrodowa', 'ogród', 'zachód', 'śródmieście']
     /* Zdrój wody pitnej przy ul. Ogrodowej (zachód) */
   },
 
@@ -230,7 +291,8 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.4451876, 51.777988],
       region: 'Polesie'
-    }
+    },
+    tags: ['ogrodowa', 'ogród', 'wschód', 'polesie']
     /* Zdrój wody pitnej przy ul. Ogrodowej (wschód) */
   },
 
@@ -246,7 +308,15 @@ const drinkingWaterPoints = [
       coordinates: [19.4493743, 51.7766601],
       placeId: 'ChIJDTzvVADLG0cROt_wJsT84ik',
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'legionów',
+      'legion',
+      'pasaż',
+      'połomska',
+      'barbara połomska',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej przy ul. Legionów w pasażu Barbary Połomskiej
      */
   },
@@ -262,7 +332,14 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.4695314, 51.7726052],
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'dąbrowski',
+      'henryk dąbrowski',
+      'dąbrowskiego',
+      'plac',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej na placu Henryka Dąbrowskiego */
   },
 
@@ -278,7 +355,8 @@ const drinkingWaterPoints = [
       coordinates: [19.471767, 51.770745],
       placeId: 'ChIJFdvmHy_LG0cRV_mQkkFhd2w',
       region: 'Śródmieście'
-    }
+    },
+    tags: ['składowa', 'nowa fabryczna', 'fabryczna', 'nowa', 'śródmieście']
     /* Zdrój wody pitnej przy ul. Składowej (Nowa Fabryczna) */
   },
 
@@ -293,7 +371,16 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.465451, 51.7691],
       region: 'Śródmieście'
-    }
+    },
+    tags: [
+      'kilińskiego',
+      'kiliński',
+      'jan kiliński',
+      'brama miasta',
+      'brama',
+      'płk',
+      'śródmieście'
+    ]
     /* Zdrój wody pitnej przy ul. płk. Jana Kilińskiego (Brama Miasta) */
   },
 
@@ -309,7 +396,8 @@ const drinkingWaterPoints = [
       coordinates: [19.521713, 51.795054],
       placeId: 'ChIJ87eqjHbLG0cRz2KuLHSeWMQ',
       region: 'Widzew'
-    }
+    },
+    tags: ['zieleniec', 'junacka', 'junak', 'widzew', 'park']
     /* Zdrój wody pitnej w Zieleńcu przy ul. Junackiej */
   },
 
@@ -324,7 +412,15 @@ const drinkingWaterPoints = [
       type: 'Point',
       coordinates: [19.4407533, 51.7684853],
       region: 'Polesie'
-    }
+    },
+    tags: [
+      '28 pułku strzelców kaniowskich',
+      'pułk',
+      'strzelcy',
+      'kaniowscy',
+      'kaniowski',
+      'polesie'
+    ]
     /* Zdrój wody pitnej przy ul. 28 Pułku Strzelców Kaniowskich */
   },
 
@@ -340,7 +436,8 @@ const drinkingWaterPoints = [
       coordinates: [19.49852, 51.74192],
       placeId: 'ChIJFxZNDKQ0GkcRsc3QlyrIhRY',
       region: 'Widzew'
-    }
+    },
+    tags: ['park podolski', 'podolski', 'podole', 'park', 'widzew']
     /* Zdrój wody pitnej w parku Podolskim */
   }
 ];
