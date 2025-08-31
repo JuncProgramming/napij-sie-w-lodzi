@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useFavorites } from '../../hooks/useFavorites';
 import FilterPanelHeader from './FilterPanelHeader';
 import SearchFilter from './SearchFilter';
@@ -9,6 +9,8 @@ import DistrictsFilter from './DistrictsFilter';
 
 const FilterPanel = ({ onFilterChange, onClose }) => {
   const { favorites } = useFavorites();
+  const filterPanelRef = useRef(null);
+
   const [filters, setFilters] = useState({
     showAll: true,
     showFavoritesOnly: false,
@@ -110,8 +112,9 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
 
   return (
     <div
+      ref={filterPanelRef}
       id="filter-panel"
-      className="absolute top-16 right-4 z-[1000] max-h-[calc(100vh-8rem)] w-80 overflow-y-auto rounded-lg border border-blue-100 bg-blue-50 p-4 shadow-xl transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:border-gray-700 dark:bg-gray-800"
+      className="transition-a absolute top-16 right-4 z-[1002] max-h-[calc(100vh-8rem)] w-80 overflow-y-auto rounded-lg bg-blue-50 p-4 shadow-xl duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:bg-gray-800"
       role="dialog"
       aria-labelledby="filter-panel-title"
       aria-modal="true"
@@ -164,7 +167,7 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
       <div className="flex gap-2 pt-2">
         <button
           onClick={onClose}
-          tabIndex={0}
+          tabIndex={18}
           className="flex-1 cursor-pointer rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-200 focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:outline-none dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400"
           aria-label="Zamknij panel filtrów i wróć do mapy">
           Zamknij

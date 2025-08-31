@@ -20,6 +20,7 @@ const VisibilityFilter = ({
         label="Wszystkie źródła"
         describedBy="show-all-desc"
         ariaDescription="Pokaż wszystkie punkty wody pitnej na mapie"
+        tabIndex={5}
       />
 
       <FilterOption
@@ -30,6 +31,7 @@ const VisibilityFilter = ({
         label={`Tylko ulubione - ${favoritesCount}`}
         describedBy="favorites-desc"
         ariaDescription={`Pokaż tylko punkty dodane do ulubionych. Obecnie masz ${favoritesCount} ulubionych punktów.`}
+        tabIndex={6}
       />
     </FilterSection>
   );

@@ -22,6 +22,7 @@ const StatusFilter = ({
         label="Czynne"
         describedBy="working-desc"
         ariaDescription="Pokaż punkty które działają"
+        tabIndex={7}
       />
 
       <FilterOption
@@ -32,6 +33,7 @@ const StatusFilter = ({
         label="Nieczynne"
         describedBy="not-working-desc"
         ariaDescription="Pokaż punkty które nie działają"
+        tabIndex={8}
       />
 
       <FilterOption
@@ -42,6 +44,7 @@ const StatusFilter = ({
         label="Brak informacji"
         describedBy="unknown-working-desc"
         ariaDescription="Pokaż punkty o nieznanym statusie działania"
+        tabIndex={9}
       />
     </FilterSection>
   );

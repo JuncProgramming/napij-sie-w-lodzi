@@ -8,7 +8,8 @@ const FilterOption = ({
   iconColor,
   label,
   describedBy,
-  ariaDescription
+  ariaDescription,
+  tabIndex = 0
 }) => {
   return (
     <label className="flex items-center">
@@ -17,6 +18,7 @@ const FilterOption = ({
         onChange={onChange}
         className="mr-2"
         describedBy={describedBy}
+        tabIndex={tabIndex}
       />
       <FontAwesomeIcon
         icon={icon}

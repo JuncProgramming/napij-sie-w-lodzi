@@ -26,6 +26,7 @@ const DistrictsFilter = ({
         label="Bałuty"
         describedBy="baluty-desc"
         ariaDescription="Pokaż punkty w dzielnicy Bałuty"
+        tabIndex={13}
       />
 
       <FilterOption
@@ -36,6 +37,7 @@ const DistrictsFilter = ({
         label="Widzew"
         describedBy="widzew-desc"
         ariaDescription="Pokaż punkty w dzielnicy Widzew"
+        tabIndex={14}
       />
 
       <FilterOption
@@ -46,6 +48,7 @@ const DistrictsFilter = ({
         label="Śródmieście"
         describedBy="srodmiescie-desc"
         ariaDescription="Pokaż punkty w dzielnicy Śródmieście"
+        tabIndex={15}
       />
 
       <FilterOption
@@ -56,6 +59,7 @@ const DistrictsFilter = ({
         label="Polesie"
         describedBy="polesie-desc"
         ariaDescription="Pokaż punkty w dzielnicy Polesie"
+        tabIndex={16}
       />
 
       <FilterOption
@@ -66,6 +70,7 @@ const DistrictsFilter = ({
         label="Górna"
         describedBy="gorna-desc"
         ariaDescription="Pokaż punkty w dzielnicy Górna"
+        tabIndex={17}
       />
     </FilterSection>
   );
