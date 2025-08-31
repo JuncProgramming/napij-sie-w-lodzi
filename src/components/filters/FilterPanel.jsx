@@ -70,7 +70,7 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
     });
   };
 
-  const handleSearchChange = (searchText) => {
+  const handleSearchChange = searchText => {
     handleFilterChange('searchText', searchText);
   };
 
@@ -116,7 +116,6 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
       aria-labelledby="filter-panel-title"
       aria-modal="true"
       aria-describedby="filter-panel-description">
-      
       <FilterPanelHeader onClearAll={clearAllFilters} />
 
       <div id="filter-panel-description" className="sr-only">
@@ -125,7 +124,7 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
         Naciśnij Escape aby zamknąć panel.
       </div>
 
-      <SearchFilter 
+      <SearchFilter
         searchText={filters.searchText}
         onSearchChange={handleSearchChange}
       />
@@ -165,6 +164,7 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
       <div className="flex gap-2 pt-2">
         <button
           onClick={onClose}
+          tabIndex={0}
           className="flex-1 cursor-pointer rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-200 focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:outline-none dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400"
           aria-label="Zamknij panel filtrów i wróć do mapy">
           Zamknij

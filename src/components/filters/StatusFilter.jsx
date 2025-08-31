@@ -6,11 +6,11 @@ import {
 import FilterSection from './FilterSection';
 import FilterOption from './FilterOption';
 
-const StatusFilter = ({ 
-  showWorking, 
-  showNotWorking, 
+const StatusFilter = ({
+  showWorking,
+  showNotWorking,
   showUnknownWorking,
-  onFilterChange 
+  onFilterChange
 }) => {
   return (
     <FilterSection legend="Status działania" legendId="working-status-legend">

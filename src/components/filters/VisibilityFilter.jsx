@@ -1,17 +1,14 @@
-import {
-  faMapMarkerAlt,
-  faHeart,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import FilterSection from './FilterSection';
 import FilterOption from './FilterOption';
 
-const VisibilityFilter = ({ 
-  showAll, 
-  showFavoritesOnly, 
+const VisibilityFilter = ({
+  showAll,
+  showFavoritesOnly,
   favoritesCount,
   allRegionsSelected,
   allStatusesSelected,
-  onFilterChange 
+  onFilterChange
 }) => {
   return (
     <FilterSection legend="Widoczność" legendId="visibility-legend">
@@ -24,7 +21,7 @@ const VisibilityFilter = ({
         describedBy="show-all-desc"
         ariaDescription="Pokaż wszystkie punkty wody pitnej na mapie"
       />
-      
+
       <FilterOption
         checked={showFavoritesOnly}
         onChange={e => onFilterChange('showFavoritesOnly', e.target.checked)}

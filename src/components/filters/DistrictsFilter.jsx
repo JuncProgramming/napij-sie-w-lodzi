@@ -3,18 +3,18 @@ import {
   faCircleChevronUp,
   faCircleChevronLeft,
   faCircleChevronRight,
-  faCircleDot,
+  faCircleDot
 } from '@fortawesome/free-solid-svg-icons';
 import FilterSection from './FilterSection';
 import FilterOption from './FilterOption';
 
-const DistrictsFilter = ({ 
+const DistrictsFilter = ({
   showBaluty,
   showWidzew,
   showSrodmiescie,
   showPolesie,
   showGorna,
-  onFilterChange 
+  onFilterChange
 }) => {
   return (
     <FilterSection legend="Dzielnice" legendId="districts-legend">

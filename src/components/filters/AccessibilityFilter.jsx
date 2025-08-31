@@ -6,17 +6,16 @@ import {
 import FilterSection from './FilterSection';
 import FilterOption from './FilterOption';
 
-const AccessibilityFilter = ({ 
-  showAccessible, 
-  showNotAccessible, 
+const AccessibilityFilter = ({
+  showAccessible,
+  showNotAccessible,
   showUnknownAccessible,
-  onFilterChange 
+  onFilterChange
 }) => {
   return (
-    <FilterSection 
-      legend="Dostępność dla osób z niepełnosprawnością" 
-      legendId="accessibility-legend"
-    >
+    <FilterSection
+      legend="Dostępność dla osób z niepełnosprawnością"
+      legendId="accessibility-legend">
       <FilterOption
         checked={showAccessible}
         onChange={e => onFilterChange('showAccessible', e.target.checked)}
@@ -39,7 +38,9 @@ const AccessibilityFilter = ({
 
       <FilterOption
         checked={showUnknownAccessible}
-        onChange={e => onFilterChange('showUnknownAccessible', e.target.checked)}
+        onChange={e =>
+          onFilterChange('showUnknownAccessible', e.target.checked)
+        }
         icon={faQuestionCircle}
         iconColor="text-gray-400"
         label="Brak informacji"
