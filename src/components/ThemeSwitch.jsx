@@ -4,7 +4,6 @@ const ThemeSwitch = () => {
   const { isDark, toggleTheme } = useTheme();
 
   const handleKeyDown = event => {
-    /* Enabling pressing space to toggle theme (along with enter default) */
     if (event.key === ' ') {
       event.preventDefault();
       toggleTheme();

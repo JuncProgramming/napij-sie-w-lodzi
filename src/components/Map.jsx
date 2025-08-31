@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../hooks/useFavorites';
@@ -63,6 +63,7 @@ const Map = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filteredWaterPoints, setFilteredWaterPoints] =
     useState(drinkingWaterPoints);
+  const filterButtonRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -82,8 +83,8 @@ const Map = () => {
 
       // Set tabIndex for zoom controls
       const zoomControls = document.querySelectorAll('.leaflet-control-zoom a');
-      zoomControls[0]?.setAttribute('tabindex', '3'); // Zoom in button
-      zoomControls[1]?.setAttribute('tabindex', '4'); // Zoom out button
+      zoomControls[0]?.setAttribute('tabindex', '19'); // Zoom in button
+      zoomControls[1]?.setAttribute('tabindex', '20'); // Zoom out button
     }, 100);
 
     return () => clearTimeout(timer);
@@ -95,16 +96,12 @@ const Map = () => {
 
   const handleKeyDown = event => {
     if (isSearchActive) return;
+
     if (event.key === 'f' || event.key === 'F') {
       event.preventDefault();
-      if (!isFilterOpen) {
-        setIsFilterOpen(true);
-      }
-      const filterButton = document.querySelector(
-        '[aria-controls="filter-panel"]'
-      );
-      if (filterButton) {
-        filterButton.focus();
+
+      if (filterButtonRef.current) {
+        filterButtonRef.current.focus();
       }
     }
 
@@ -112,11 +109,8 @@ const Map = () => {
       event.preventDefault();
       setIsFilterOpen(false);
 
-      const filterButton = document.querySelector(
-        '[aria-controls="filter-panel"]'
-      );
-      if (filterButton) {
-        filterButton.focus();
+      if (filterButtonRef.current) {
+        filterButtonRef.current.focus();
       }
     }
   };
@@ -224,6 +218,7 @@ const Map = () => {
         </MarkerClusterGroup>
       </MapContainer>
       <button
+        ref={filterButtonRef}
         onClick={toggleFilter}
         tabIndex={2}
         className="absolute top-4 right-4 z-[1001] flex size-11 cursor-pointer items-center justify-center rounded-lg bg-blue-50 text-blue-800 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-100 hover:shadow-xl focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:outline-none dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400"
@@ -241,7 +236,10 @@ const Map = () => {
       {isFilterOpen && (
         <FilterPanel
           onFilterChange={handleFilterChange}
-          onClose={toggleFilter}
+          onClose={() => {
+            setIsFilterOpen(false);
+            filterButtonRef.current?.focus();
+          }}
         />
       )}
     </div>
