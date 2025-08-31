@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../hooks/useFavorites';
+import { useSearch } from '../hooks/useSearch';
 import L from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import 'leaflet/dist/leaflet.css';
@@ -58,13 +59,14 @@ const createClusterIcon = cluster => {
 
 const Map = () => {
   const { favorites } = useFavorites();
+  const { isSearchActive } = useSearch();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filteredWaterPoints, setFilteredWaterPoints] =
     useState(drinkingWaterPoints);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Remove focus from attribution links
+      // Remove focus from attribution links at the bottom right corner
       const attributionLinks = document.querySelectorAll(
         '.leaflet-control-attribution a'
       );
@@ -72,11 +74,16 @@ const Map = () => {
         link.setAttribute('tabindex', '-1');
       });
 
-      // Remove focus from map container
+      // Remove focus from map container (first 'empty' click)
       const mapContainer = document.querySelector('.leaflet-container');
       if (mapContainer) {
         mapContainer.setAttribute('tabindex', '-1');
       }
+
+      // Set tabIndex for zoom controls
+      const zoomControls = document.querySelectorAll('.leaflet-control-zoom a');
+      zoomControls[0]?.setAttribute('tabindex', '3'); // Zoom in button
+      zoomControls[1]?.setAttribute('tabindex', '4'); // Zoom out button
     }, 100);
 
     return () => clearTimeout(timer);
@@ -87,6 +94,7 @@ const Map = () => {
   };
 
   const handleKeyDown = event => {
+    if (isSearchActive) return;
     if (event.key === 'f' || event.key === 'F') {
       event.preventDefault();
       if (!isFilterOpen) {
@@ -169,8 +177,10 @@ const Map = () => {
 
     if (filters.searchText.trim()) {
       const searchTerm = filters.searchText.toLowerCase();
-      filtered = filtered.filter(waterPoint =>
-        waterPoint.properties.name.toLowerCase().includes(searchTerm)
+      filtered = filtered.filter(
+        waterPoint =>
+          waterPoint.properties.name.toLowerCase().includes(searchTerm) ||
+          waterPoint.tags.some(tag => tag.toLowerCase().includes(searchTerm))
       );
     }
 
@@ -183,7 +193,6 @@ const Map = () => {
         center={[51.768432, 19.457468]}
         zoom={12}
         minZoom={7}
-        maxZoom={18}
         maxBounds={[
           [49.002, 14.123],
           [54.839, 24.15]
@@ -195,7 +204,6 @@ const Map = () => {
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-          maxZoom={18}
           tileSize={256}
           zoomOffset={0}
           detectRetina={true}
