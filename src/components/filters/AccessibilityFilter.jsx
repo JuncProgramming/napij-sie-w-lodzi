@@ -24,6 +24,7 @@ const AccessibilityFilter = ({
         label="Dostosowane"
         describedBy="accessible-desc"
         ariaDescription="Pokaż punkty dostosowane dla osób z niepełnosprawnością"
+        tabIndex={10}
       />
 
       <FilterOption
@@ -34,6 +35,7 @@ const AccessibilityFilter = ({
         label="Niedostosowane"
         describedBy="not-accessible-desc"
         ariaDescription="Pokaż punkty niedostosowane dla osób z niepełnosprawnością"
+        tabIndex={11}
       />
 
       <FilterOption
@@ -46,6 +48,7 @@ const AccessibilityFilter = ({
         label="Brak informacji"
         describedBy="unknown-accessible-desc"
         ariaDescription="Pokaż punkty o nieznanym statusie dostępności"
+        tabIndex={12}
       />
     </FilterSection>
   );

@@ -1,4 +1,6 @@
 import { useSearch } from '../../hooks/useSearch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const SearchFilter = ({ searchText, onSearchChange }) => {
   const { setIsSearchActive } = useSearch();
@@ -9,22 +11,26 @@ const SearchFilter = ({ searchText, onSearchChange }) => {
         className="mb-2 block text-sm font-medium text-gray-700 transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:text-gray-300">
         Szukaj
       </label>
-      <input
-        id="search-input"
-        type="search"
-        value={searchText}
-        onChange={e => onSearchChange(e.target.value)}
-        onFocus={() => {
-          setIsSearchActive(true);
-        }}
-        onBlur={() => {
-          setIsSearchActive(false);
-        }}
-        tabIndex={0}
-        placeholder="Nazwa lokalizacji..."
-        className="w-full rounded-md border border-blue-100 bg-blue-100 px-3 py-2 text-sm text-gray-800 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] focus:outline-none focus-visible:border-blue-500 focus-visible:ring-1 focus-visible:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-        aria-describedby="search-help"
-      />
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className="fa-md text-gray-400"
+          />
+        </div>
+        <input
+          id="search-input"
+          type="text"
+          value={searchText}
+          onChange={e => onSearchChange(e.target.value)}
+          onFocus={() => setIsSearchActive(true)}
+          onBlur={() => setIsSearchActive(false)}
+          tabIndex={4}
+          placeholder="Nazwa lokalizacji..."
+          className="w-full rounded-md border border-blue-100 bg-blue-100 px-10 py-2 text-sm text-gray-800 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] focus:outline-none focus-visible:border-blue-500 focus-visible:ring-1 focus-visible:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+          aria-describedby="search-help"
+        />
+      </div>
       <div id="search-help" className="sr-only">
         Wpisz nazwę, aby wyszukać konkretny punkt na mapie
       </div>
