@@ -82,7 +82,7 @@ const PopUp = ({ id, name, coordinates, placeId, isWorking, isAccessible }) => {
           </h1>
           <button
             onClick={() => toggleFavorite(id)}
-            className="size-11 flex-shrink-0 cursor-pointer rounded-full p-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-slate-200 focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:bg-gray-700 dark:focus-visible:ring-blue-50"
+            className="size-11 flex-shrink-0 cursor-pointer rounded-full p-1 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-slate-200 focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:outline-none dark:hover:bg-gray-700 dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400"
             aria-label={
               isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'
             }
@@ -137,7 +137,7 @@ const PopUp = ({ id, name, coordinates, placeId, isWorking, isAccessible }) => {
             href={googleMapsLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-md bg-blue-100 px-3 py-2 text-sm font-medium !text-blue-800 transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-200 focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-gray-600 dark:!text-gray-300 dark:hover:bg-gray-500 dark:focus-visible:ring-blue-50"
+            className="flex items-center justify-center gap-2 rounded-md bg-blue-100 px-3 py-2 text-sm font-medium !text-blue-800 transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-200 focus-visible:ring-3 focus-visible:ring-blue-800 focus-visible:outline-none dark:bg-gray-600 dark:!text-gray-300 dark:hover:bg-gray-500 dark:focus-visible:ring-3 dark:focus-visible:ring-yellow-400"
             aria-label={`Otwórz nawigację do ${name} w Google Maps w nowym oknie`}>
             <FontAwesomeIcon
               icon={faRoute}
