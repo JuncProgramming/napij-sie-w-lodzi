@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://JuncProgramming.github.io/napij-sie-w-lodzi",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "npm run lint && npm run format",
