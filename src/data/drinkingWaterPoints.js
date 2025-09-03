@@ -3,7 +3,7 @@ const drinkingWaterPoints = [
     id: 'dw-1',
     properties: {
       name: 'Zdrój wody pitnej ZWiK Łódź "Przyklasztorze"',
-      isWorking: 'unknown',
+      isWorking: 'yes',
       isAccessible: 'unknown'
     },
     geometry: {
