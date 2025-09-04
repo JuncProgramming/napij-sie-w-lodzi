@@ -114,7 +114,7 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
     <div
       ref={filterPanelRef}
       id="filter-panel"
-      className="transition-a absolute top-16 right-4 z-[1002] max-h-[calc(100vh-8rem)] w-80 overflow-y-auto rounded-lg bg-blue-50 p-4 shadow-xl duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:bg-gray-800"
+      className="absolute top-[4.25rem] right-4 z-[1002] max-h-[calc(100dvh-10.25rem)] w-80 max-w-[calc(100dvw-5.5rem)] overflow-y-auto rounded-lg bg-blue-50 p-4 shadow-xl transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:bg-gray-800"
       role="dialog"
       aria-labelledby="filter-panel-title"
       aria-modal="true"
