@@ -8,16 +8,34 @@ import {
 import { faHeart as UnfilledHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useFavorites } from '../hooks/useFavorites';
-import { Popup } from 'react-leaflet';
+import { Popup, useMap } from 'react-leaflet';
+import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 
 const PopUp = ({ id, name, coordinates, placeId, isWorking, isAccessible }) => {
   const { favorites, toggleFavorite } = useFavorites();
   const isFavorite = favorites.includes(id);
+  const map = useMap();
 
   const googleMapsLink = placeId
     ? `https://www.google.com/maps/place/?q=place_id:${placeId}&center=${coordinates[1]},${coordinates[0]}&zoom=17`
     : `https://www.google.com/maps/dir/?api=1&destination=${coordinates[1]},${coordinates[0]}`;
+
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        event.stopPropagation();
+        event.preventDefault();
+        map.closePopup();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [map]);
 
   const getStatusText = (status, type) => {
     const baseTexts = {
