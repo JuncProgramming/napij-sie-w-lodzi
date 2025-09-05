@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useFavorites } from '../../hooks/useFavorites';
 import FilterPanelHeader from './FilterPanelHeader';
 import SearchFilter from './SearchFilter';
@@ -7,69 +7,46 @@ import StatusFilter from './StatusFilter';
 import AccessibilityFilter from './AccessibilityFilter';
 import DistrictsFilter from './DistrictsFilter';
 
-const FilterPanel = ({ onFilterChange, onClose }) => {
+const FilterPanel = ({ filters, onFilterChange, onClose }) => {
   const { favorites } = useFavorites();
   const filterPanelRef = useRef(null);
 
-  const [filters, setFilters] = useState({
-    showAll: true,
-    showFavoritesOnly: false,
-    showBaluty: true,
-    showWidzew: true,
-    showSrodmiescie: true,
-    showPolesie: true,
-    showGorna: true,
-    showWorking: true,
-    showNotWorking: true,
-    showUnknownWorking: true,
-    showAccessible: true,
-    showNotAccessible: true,
-    showUnknownAccessible: true,
-    searchText: ''
-  });
-
-  useEffect(() => {
-    onFilterChange(filters);
-  }, [filters]);
-
   const handleFilterChange = (key, value) => {
-    setFilters(prev => {
-      let newFilters = { ...prev, [key]: value };
+    let newFilters = { ...filters, [key]: value };
 
-      if (key === 'showAll' && value) {
-        newFilters = {
-          ...newFilters,
-          showFavoritesOnly: false,
-          showBaluty: true,
-          showWidzew: true,
-          showSrodmiescie: true,
-          showPolesie: true,
-          showGorna: true,
-          showWorking: true,
-          showNotWorking: true,
-          showUnknownWorking: true,
-          showAccessible: true,
-          showNotAccessible: true,
-          showUnknownAccessible: true
-        };
-      }
+    if (key === 'showAll' && value) {
+      newFilters = {
+        ...newFilters,
+        showFavoritesOnly: false,
+        showBaluty: true,
+        showWidzew: true,
+        showSrodmiescie: true,
+        showPolesie: true,
+        showGorna: true,
+        showWorking: true,
+        showNotWorking: true,
+        showUnknownWorking: true,
+        showAccessible: true,
+        showNotAccessible: true,
+        showUnknownAccessible: true
+      };
+    }
 
-      if (key === 'showFavoritesOnly' && value) {
-        newFilters = {
-          ...newFilters,
-          showAll: false
-        };
-      }
+    if (key === 'showFavoritesOnly' && value) {
+      newFilters = {
+        ...newFilters,
+        showAll: false
+      };
+    }
 
-      if (key === 'showAll' && !value) {
-        newFilters = {
-          ...newFilters,
-          showAll: false
-        };
-      }
+    if (key === 'showAll' && !value) {
+      newFilters = {
+        ...newFilters,
+        showAll: false
+      };
+    }
 
-      return newFilters;
-    });
+    onFilterChange(newFilters);
   };
 
   const handleSearchChange = searchText => {
@@ -77,7 +54,7 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
   };
 
   const clearAllFilters = () => {
-    setFilters({
+    const defaultFilters = {
       showAll: true,
       showFavoritesOnly: false,
       showBaluty: true,
@@ -92,7 +69,8 @@ const FilterPanel = ({ onFilterChange, onClose }) => {
       showNotAccessible: true,
       showUnknownAccessible: true,
       searchText: ''
-    });
+    };
+    onFilterChange(defaultFilters);
   };
 
   const allRegionsSelected =

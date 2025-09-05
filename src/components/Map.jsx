@@ -64,6 +64,22 @@ const Map = () => {
   const [filteredWaterPoints, setFilteredWaterPoints] =
     useState(drinkingWaterPoints);
   const filterButtonRef = useRef(null);
+  const [filters, setFilters] = useState({
+    showAll: true,
+    showFavoritesOnly: false,
+    showBaluty: true,
+    showWidzew: true,
+    showSrodmiescie: true,
+    showPolesie: true,
+    showGorna: true,
+    showWorking: true,
+    showNotWorking: true,
+    showUnknownWorking: true,
+    showAccessible: true,
+    showNotAccessible: true,
+    showUnknownAccessible: true,
+    searchText: ''
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -131,15 +147,15 @@ const Map = () => {
     }
   };
 
-  const handleFilterChange = filters => {
+  const applyFilters = (filtersToApply) => {
     let filtered = [...drinkingWaterPoints];
 
     const enabledRegions = [];
-    if (filters.showBaluty) enabledRegions.push('Bałuty');
-    if (filters.showWidzew) enabledRegions.push('Widzew');
-    if (filters.showSrodmiescie) enabledRegions.push('Śródmieście');
-    if (filters.showPolesie) enabledRegions.push('Polesie');
-    if (filters.showGorna) enabledRegions.push('Górna');
+    if (filtersToApply.showBaluty) enabledRegions.push('Bałuty');
+    if (filtersToApply.showWidzew) enabledRegions.push('Widzew');
+    if (filtersToApply.showSrodmiescie) enabledRegions.push('Śródmieście');
+    if (filtersToApply.showPolesie) enabledRegions.push('Polesie');
+    if (filtersToApply.showGorna) enabledRegions.push('Górna');
 
     if (enabledRegions.length === 0) {
       setFilteredWaterPoints([]);
@@ -150,43 +166,45 @@ const Map = () => {
       enabledRegions.includes(waterPoint.geometry.region)
     );
 
-    if (filters.showFavoritesOnly && !filters.showAll) {
+    if (filtersToApply.showFavoritesOnly && !filtersToApply.showAll) {
       filtered = filtered.filter(waterPoint =>
         favorites.includes(waterPoint.id)
       );
     }
 
     if (
-      !filters.showWorking ||
-      !filters.showNotWorking ||
-      !filters.showUnknownWorking
+      !filtersToApply.showWorking ||
+      !filtersToApply.showNotWorking ||
+      !filtersToApply.showUnknownWorking
     ) {
       filtered = filtered.filter(waterPoint => {
         const status = waterPoint.properties.isWorking;
-        if (!filters.showWorking && status === 'yes') return false;
-        if (!filters.showNotWorking && status === 'no') return false;
-        if (!filters.showUnknownWorking && status === 'unknown') return false;
-        return true;
-      });
-    }
-
-    if (
-      !filters.showAccessible ||
-      !filters.showNotAccessible ||
-      !filters.showUnknownAccessible
-    ) {
-      filtered = filtered.filter(waterPoint => {
-        const accessibility = waterPoint.properties.isAccessible;
-        if (!filters.showAccessible && accessibility === 'yes') return false;
-        if (!filters.showNotAccessible && accessibility === 'no') return false;
-        if (!filters.showUnknownAccessible && accessibility === 'unknown')
+        if (!filtersToApply.showWorking && status === 'yes') return false;
+        if (!filtersToApply.showNotWorking && status === 'no') return false;
+        if (!filtersToApply.showUnknownWorking && status === 'unknown')
           return false;
         return true;
       });
     }
 
-    if (filters.searchText.trim()) {
-      const searchTerm = filters.searchText.toLowerCase();
+    if (
+      !filtersToApply.showAccessible ||
+      !filtersToApply.showNotAccessible ||
+      !filtersToApply.showUnknownAccessible
+    ) {
+      filtered = filtered.filter(waterPoint => {
+        const accessibility = waterPoint.properties.isAccessible;
+        if (!filtersToApply.showAccessible && accessibility === 'yes') return false;
+        if (!filtersToApply.showNotAccessible && accessibility === 'no')
+          return false;
+        if (!filtersToApply.showUnknownAccessible && accessibility === 'unknown')
+          return false;
+        return true;
+      });
+    }
+
+    if (filtersToApply.searchText.trim()) {
+      const searchTerm = filtersToApply.searchText.toLowerCase();
       filtered = filtered.filter(
         waterPoint =>
           waterPoint.properties.name.toLowerCase().includes(searchTerm) ||
@@ -195,6 +213,19 @@ const Map = () => {
     }
 
     setFilteredWaterPoints(filtered);
+  };
+
+  useEffect(() => {
+    applyFilters(filters);
+  }, [favorites]);
+
+  useEffect(() => {
+    applyFilters(filters);
+  }, []);
+
+  const handleFilterChange = newFilters => {
+    setFilters(newFilters);
+    applyFilters(newFilters);
   };
 
   return (
@@ -251,6 +282,7 @@ const Map = () => {
       </button>
       {isFilterOpen && (
         <FilterPanel
+          filters={filters}
           onFilterChange={handleFilterChange}
           onClose={() => {
             setIsFilterOpen(false);
