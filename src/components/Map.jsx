@@ -81,14 +81,30 @@ const Map = () => {
         mapContainer.setAttribute('tabindex', '-1');
       }
 
-      // Set tabIndex for zoom controls
+      const markers = document.querySelectorAll('.leaflet-marker-icon');
+      markers.forEach((marker, index) => {
+        marker.setAttribute('tabindex', `${21 + index}`);
+      });
+
       const zoomControls = document.querySelectorAll('.leaflet-control-zoom a');
-      zoomControls[0]?.setAttribute('tabindex', '19'); // Zoom in button
-      zoomControls[1]?.setAttribute('tabindex', '20'); // Zoom out button
-    }, 100);
+      zoomControls[0]?.setAttribute('tabindex', '19');
+      zoomControls[1]?.setAttribute('tabindex', '20');
+    }, 50);
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Update tabindexes when markers number change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const markers = document.querySelectorAll('.leaflet-marker-icon');
+      markers.forEach((marker, index) => {
+        marker.setAttribute('tabindex', `${21 + index}`);
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [filteredWaterPoints]);
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -182,7 +198,7 @@ const Map = () => {
   };
 
   return (
-    <div className="absolute inset-0 h-full w-full" onKeyDown={handleKeyDown}>
+    <div className="relative h-full w-full" onKeyDown={handleKeyDown}>
       <MapContainer
         center={[51.768432, 19.457468]}
         zoom={12}
