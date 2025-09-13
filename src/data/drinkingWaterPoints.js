@@ -173,8 +173,8 @@ const drinkingWaterPoints = [
     id: 'dw-8',
     properties: {
       name: 'Zdrój wody pitnej w Łódzkiej Informacji Turystycznej przy ul. Piotrkowskiej',
-      isWorking: 'unknown',
-      isAccessible: 'unknown'
+      isWorking: 'yes',
+      isAccessible: 'yes'
     },
     geometry: {
       type: 'Point',
@@ -347,7 +347,7 @@ const drinkingWaterPoints = [
     id: 'dw-15',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Ogrodowej (wschód)',
-      isWorking: 'yes',
+      isWorking: 'no',
       isAccessible: 'unknown'
     },
     geometry: {
@@ -496,7 +496,7 @@ const drinkingWaterPoints = [
     id: 'dw-21',
     properties: {
       name: 'Zdrój wody pitnej przy ul. 28 Pułku Strzelców Kaniowskich',
-      isWorking: 'unknown',
+      isWorking: 'no',
       isAccessible: 'unknown'
     },
     geometry: {
