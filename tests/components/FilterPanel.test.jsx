@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import FilterPanel from '../../src/components/filters/FilterPanel';
 import { FavoritesProvider } from '../../src/contexts/FavoritesContext';
 import { SearchProvider } from '../../src/contexts/SearchContext';
@@ -54,5 +54,27 @@ describe('FilterPanel Component', () => {
     expect(closeButton).toBeInTheDocument();
     expect(closeButton).toBeVisible();
     expect(closeButton).toBeEnabled();
+  });
+
+  it('should close the filter panel when the close button is clicked', () => {
+    const handleClose = vi.fn();
+
+    render(
+      <FavoritesProvider>
+        <SearchProvider>
+          <FilterPanel
+            filters={defaultFilters}
+            onFilterChange={vi.fn()}
+            onClose={handleClose}
+          />
+        </SearchProvider>
+      </FavoritesProvider>
+    );
+
+    const closeButton = screen.getByRole('button', {
+      name: /zamknij/i
+    });
+    fireEvent.click(closeButton);
+    expect(handleClose).toHaveBeenCalledTimes(1);
   });
 });
