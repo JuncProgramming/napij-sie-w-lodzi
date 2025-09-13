@@ -11,7 +11,9 @@ describe('ThemeSwitch Component', () => {
       </ThemeProvider>
     );
 
-    const themeSwitch = screen.getByRole('switch', {name: /Przełącz na motyw jasny|ciemny/i});
+    const themeSwitch = screen.getByRole('switch', {
+      name: /przełącz motyw jasny|ciemny/i
+    });
     expect(themeSwitch).toBeInTheDocument();
     expect(themeSwitch).toBeVisible();
     expect(themeSwitch).toBeEnabled();

@@ -147,7 +147,7 @@ const Map = () => {
     }
   };
 
-  const applyFilters = (filtersToApply) => {
+  const applyFilters = filtersToApply => {
     let filtered = [...drinkingWaterPoints];
 
     const enabledRegions = [];
@@ -194,10 +194,14 @@ const Map = () => {
     ) {
       filtered = filtered.filter(waterPoint => {
         const accessibility = waterPoint.properties.isAccessible;
-        if (!filtersToApply.showAccessible && accessibility === 'yes') return false;
+        if (!filtersToApply.showAccessible && accessibility === 'yes')
+          return false;
         if (!filtersToApply.showNotAccessible && accessibility === 'no')
           return false;
-        if (!filtersToApply.showUnknownAccessible && accessibility === 'unknown')
+        if (
+          !filtersToApply.showUnknownAccessible &&
+          accessibility === 'unknown'
+        )
           return false;
         return true;
       });

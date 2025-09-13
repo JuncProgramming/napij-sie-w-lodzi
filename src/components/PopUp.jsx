@@ -22,7 +22,7 @@ const PopUp = ({ id, name, coordinates, placeId, isWorking, isAccessible }) => {
     : `https://www.google.com/maps/dir/?api=1&destination=${coordinates[1]},${coordinates[0]}`;
 
   useEffect(() => {
-    const handleEscapeKey = (event) => {
+    const handleEscapeKey = event => {
       if (event.key === 'Escape') {
         event.stopPropagation();
         event.preventDefault();

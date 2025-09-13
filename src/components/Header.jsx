@@ -4,7 +4,7 @@ import Logo from './Logo';
 const Header = () => {
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-[9999] flex h-16 w-full flex-shrink-0 items-center justify-between border-blue-100 bg-blue-50 px-4 shadow-md transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:bg-gray-800"
+      className="fixed top-0 right-0 left-0 z-[9999] flex h-16 w-full flex-shrink-0 items-center justify-between border-blue-100 bg-blue-50 px-4 shadow-md transition-colors duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] dark:bg-gray-800"
       role="banner">
       <div className="w-12" aria-hidden="true"></div>
       <div className="flex items-center">

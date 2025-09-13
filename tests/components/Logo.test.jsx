@@ -10,7 +10,7 @@ describe('Logo Component', () => {
       </ThemeProvider>
     );
 
-    const logo = screen.getByRole('img', { name: /Logo/i });
+    const logo = screen.getByRole('img', { name: /logo/i });
     expect(logo).toBeInTheDocument();
     expect(logo).toBeVisible();
   });

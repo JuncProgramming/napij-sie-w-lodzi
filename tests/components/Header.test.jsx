@@ -10,7 +10,7 @@ describe('Header Component', () => {
         <Header />
       </ThemeProvider>
     );
-    
+
     const header = screen.getByRole('banner');
     expect(header).toBeInTheDocument();
     expect(header).toBeVisible();
