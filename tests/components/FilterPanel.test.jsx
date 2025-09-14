@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import FilterPanel from '../../src/components/filters/FilterPanel';
 import { FavoritesProvider } from '../../src/contexts/FavoritesContext';
 import { SearchProvider } from '../../src/contexts/SearchContext';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 
 describe('FilterPanel Component', () => {
   const defaultFilters = {
@@ -47,6 +47,11 @@ describe('FilterPanel Component', () => {
 
     const filterCheckboxes = screen.getAllByRole('checkbox');
     expect(filterCheckboxes.length).toBe(13);
+    filterCheckboxes.forEach(checkbox => {
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox).toBeVisible();
+      expect(checkbox).toBeEnabled();
+    });
 
     const closeButton = screen.getByRole('button', {
       name: /zamknij/i
@@ -54,6 +59,38 @@ describe('FilterPanel Component', () => {
     expect(closeButton).toBeInTheDocument();
     expect(closeButton).toBeVisible();
     expect(closeButton).toBeEnabled();
+  });
+
+  it('should render the checkboxes with correct default check state', () => {
+    render(
+      <FavoritesProvider>
+        <SearchProvider>
+          <FilterPanel
+            filters={defaultFilters}
+            onFilterChange={vi.fn()}
+            onClose={vi.fn()}
+          />
+        </SearchProvider>
+      </FavoritesProvider>
+    );
+
+    const favoritesCheckbox = screen.getByRole('checkbox', {
+      name: /ulubione/i
+    });
+    expect(favoritesCheckbox).toBeInTheDocument();
+    expect(favoritesCheckbox).toBeVisible();
+    expect(favoritesCheckbox).toBeEnabled();
+    expect(favoritesCheckbox).not.toBeChecked();
+
+    const otherCheckboxes = screen
+      .getAllByRole('checkbox')
+      .filter(checkbox => checkbox !== favoritesCheckbox);
+    otherCheckboxes.forEach(checkbox => {
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox).toBeVisible();
+      expect(checkbox).toBeEnabled();
+      expect(checkbox).toBeChecked();
+    });
   });
 
   it('should call onFilterChange when the search text is changed', () => {
