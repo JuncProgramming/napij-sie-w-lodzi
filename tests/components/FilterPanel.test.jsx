@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import FilterPanel from '../../src/components/filters/FilterPanel';
 import { FavoritesProvider } from '../../src/contexts/FavoritesContext';
 import { SearchProvider } from '../../src/contexts/SearchContext';
-import { expect } from 'vitest';
+import { expect, it } from 'vitest';
 
 describe('FilterPanel Component', () => {
   const defaultFilters = {
@@ -56,7 +56,57 @@ describe('FilterPanel Component', () => {
     expect(closeButton).toBeEnabled();
   });
 
-  it('should close the filter panel when the close button is clicked', () => {
+  it('should call onFilterChange when the search text is changed', () => {
+    const handleFilterChange = vi.fn();
+
+    render(
+      <FavoritesProvider>
+        <SearchProvider>
+          <FilterPanel
+            filters={defaultFilters}
+            onFilterChange={handleFilterChange}
+            onClose={vi.fn()}
+          />
+        </SearchProvider>
+      </FavoritesProvider>
+    );
+
+    const textbox = screen.getByRole('textbox');
+    fireEvent.change(textbox, { target: { value: 'test' } });
+    expect(handleFilterChange).toHaveBeenCalledTimes(1);
+    expect(handleFilterChange).toHaveBeenCalledWith({
+      ...defaultFilters,
+      searchText: 'test'
+    });
+  });
+
+  it('should call onFilterChange when a checkbox is toggled', () => {
+    const handleFilterChange = vi.fn();
+
+    render(
+      <FavoritesProvider>
+        <SearchProvider>
+          <FilterPanel
+            filters={defaultFilters}
+            onFilterChange={handleFilterChange}
+            onClose={vi.fn()}
+          />
+        </SearchProvider>
+      </FavoritesProvider>
+    );
+
+    const checkbox = screen.getByRole('checkbox', {
+      name: /wszystkie/i
+    });
+    fireEvent.click(checkbox);
+    expect(handleFilterChange).toHaveBeenCalledTimes(1);
+    expect(handleFilterChange).toHaveBeenCalledWith({
+      ...defaultFilters,
+      showAll: false
+    });
+  });
+
+  it('should call onClose when the close button is clicked', () => {
     const handleClose = vi.fn();
 
     render(
