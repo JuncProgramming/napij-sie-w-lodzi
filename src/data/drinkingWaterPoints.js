@@ -389,6 +389,23 @@ const drinkingWaterPoints = [
   {
     id: 'dw-17',
     properties: {
+      name: 'Zdrój wody pitnej przy ul. Legionów',
+      isWorking: 'unknown',
+      isAccessible: 'unknown'
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [19.445376, 51.775806],
+      region: 'Polesie'
+    },
+    tags: ['legionów', 'legionow', '47', '46', 'polesie']
+    /* Zdrój wody pitnej przy ul. Legionów
+     */
+  },
+
+  {
+    id: 'dw-18',
+    properties: {
       name: 'Zdrój wody pitnej na placu Henryka Dąbrowskiego',
       isWorking: 'unknown',
       isAccessible: 'unknown'
@@ -420,7 +437,7 @@ const drinkingWaterPoints = [
   },
 
   {
-    id: 'dw-18',
+    id: 'dw-19',
     properties: {
       name: 'Zdrój wody pitnej przy ul. Składowej (Nowa Fabryczna)',
       isWorking: 'unknown',
@@ -446,7 +463,7 @@ const drinkingWaterPoints = [
   },
 
   {
-    id: 'dw-19',
+    id: 'dw-20',
     properties: {
       name: 'Zdrój wody pitnej przy ul. płk. Jana Kilińskiego (Brama Miasta)',
       isWorking: 'unknown',
@@ -476,7 +493,7 @@ const drinkingWaterPoints = [
   },
 
   {
-    id: 'dw-20',
+    id: 'dw-21',
     properties: {
       name: 'Zdrój wody pitnej w Zieleńcu przy ul. Junackiej',
       isWorking: 'unknown',
@@ -493,7 +510,7 @@ const drinkingWaterPoints = [
   },
 
   {
-    id: 'dw-21',
+    id: 'dw-22',
     properties: {
       name: 'Zdrój wody pitnej przy ul. 28 Pułku Strzelców Kaniowskich',
       isWorking: 'no',
@@ -518,7 +535,7 @@ const drinkingWaterPoints = [
   },
 
   {
-    id: 'dw-22',
+    id: 'dw-23',
     properties: {
       name: 'Zdrój wody pitnej w parku Podolskim',
       isWorking: 'unknown',
