@@ -55,7 +55,7 @@ describe('PopUp Component', () => {
     expect(googleMapsLink).toHaveAttribute(
       'href',
       expect.stringContaining(
-        'https://www.google.com/maps/place/?q=place_id:ChIJN1t_tDeuEmsRUsoyG83frY4'
+        'https://www.google.com/maps/dir/?api=1&destination=21.0122%2C52.2297&destination_place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&dir_action=navigate'
       )
     );
   });

@@ -17,9 +17,12 @@ const PopUp = ({ id, name, coordinates, placeId, isWorking, isAccessible }) => {
   const isFavorite = favorites.includes(id);
   const map = useMap();
 
+  const destination = `${coordinates[1]},${coordinates[0]}`;
+  const destinationParam = encodeURIComponent(destination);
+
   const googleMapsLink = placeId
-    ? `https://www.google.com/maps/place/?q=place_id:${placeId}&center=${coordinates[1]},${coordinates[0]}&zoom=17`
-    : `https://www.google.com/maps/dir/?api=1&destination=${coordinates[1]},${coordinates[0]}`;
+    ? `https://www.google.com/maps/dir/?api=1&destination=${destinationParam}&destination_place_id=${encodeURIComponent(placeId)}&dir_action=navigate`
+    : `https://www.google.com/maps/dir/?api=1&destination=${destinationParam}&dir_action=navigate`;
 
   useEffect(() => {
     const handleEscapeKey = event => {
